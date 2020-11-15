@@ -1,16 +1,36 @@
 <template>
 
-  <section v-for="(data_fav, index) in data_fav" :key="index" class="card">
+  <div id="fav">
 
-    <img v-bind:src="data_fav.link"  alt="">
+    <h1 class="bigTitle">You're fav </h1>
 
-    <h3> {{ data_fav.title }}</h3>
 
-  </section>
+    <section class="container">
+      <div v-for="(data_fav, index) in data_fav" :key="index"  :id="index">
+        <div v-if="data_fav !== null" class="card">
+            <div class="content-image">
+              <!--<img :id="images.id"  class="fullscreen" v-on:click="fullscreen(images.id)" v-if="images.type=='image/jpeg'||'image/png'" width="320" v-bind:src="images.link">
+              <video class="fullscreen" v-else-if="images.type=='video/mp4'" controls width="320">
+                <source :src="images.link"
+                        type="video/mp4">
+                Sorry, your browser doesn't support embedded videos.
+              </video>-->
+              <img v-bind:src="data_fav.link"  :alt="data_fav.title" width="320">
+
+            </div>
+          <h3  v-if="data_fav.title.length > 25"> {{ data_fav.title.substring(0,60) }}...</h3>
+          <h3  v-else> {{ data_fav.title }}</h3>
+
+        </div>
+
+      </div>
+    </section>
+  </div>
 
 </template>
 
 <script>
+
 
 export default {
 name: "favory.vue",
@@ -40,10 +60,3 @@ name: "favory.vue",
   }
 }
 </script>
-
-<style scoped>
-
-img{
-  width: 200px;
-}
-</style>

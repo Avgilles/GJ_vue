@@ -1,55 +1,34 @@
 <template>
   <div class="home">
+    <h1 class="bigTitle">be viral </h1>
 
-    <section v-for="(data_imgur, index) in data_imgur" :key="index" class="card" :id="index">
-      <!--<div v-for="(images, index) in data_imgur.images" :key="index" >
-        <img v-if="images.type=='image/jpeg'||'image/png'" width="200" v-bind:src="images.link" alt="">
-        <video v-else-if="images.type=='video/mp4'" controls width="200">
-          <source :src="images.link"
-                  type="video/mp4">
-          Sorry, your browser doesn't support embedded videos.
-        </video>
 
-        <button :id="images.id"  v-on:click="addFavory(images.id)" class="btn-secondary like-review">
-          <i  class="fa fa-heart" aria-hidden="true"></i> Like
-        </button>
-      </div>-->
-      <h3> {{ data_imgur.title }}</h3>
-      <p>{{data_imgur.topic}}</p>
+    <section class="container">
+      <div v-for="(data_imgur, index) in data_imgur" :key="index"  :id="index">
+        <div v-if="data_imgur !== null" class="card">
 
-      <div id="demo" class="carousel slide carousel-fade" data-ride="carousel">
-        <!-- Indicateurs -->
-        <ul class="carousel-indicators">
-          <li data-target="#demo" data-slide-to="0" class="active"></li>
-          <li data-target="#demo" data-slide-to="1"></li>
-          <li data-target="#demo" data-slide-to="2"></li>
-        </ul>
+          <div class="content" v-for="(images, index) in data_imgur.images" :key="index" >
+            <div class="content-image">
+              <img :id="images.id"  class="fullscreen" v-on:click="fullscreen(images.id)" v-if="images.type=='image/jpeg'||'image/png'" width="320" v-bind:src="images.link">
+              <video class="fullscreen" v-else-if="images.type=='video/mp4'" controls width="320">
+                <source :src="images.link"
+                        type="video/mp4">
+                Sorry, your browser doesn't support embedded videos.
+              </video>
+            </div>
 
-        <!-- Carrousel -->
-        <div class="carousel-inner">
-          <div class="carousel-item active" data-interval="4000">
-            <img src="https://www.pierre-giraud.com/bootstrap-carrousel-slide-1.jpg" alt="Carrousel slide 1" class="d-block w-100">
+
           </div>
-          <div class="carousel-item" data-interval="2000">
-            <img src="https://www.pierre-giraud.com/bootstrap-carrousel-slide-2.jpg" alt="Carrousel slide 2" class="d-block w-100">
-          </div>
-          <div class="carousel-item" data-interval="1000">
-            <img src="https://www.pierre-giraud.com/bootstrap-carrousel-slide-3.jpg" alt="Carrousel slide 3" class="d-block w-100">
-          </div>
+          <h3 v-if="data_imgur.title.length > 25"> {{ data_imgur.title.substring(0,60) }}..</h3>
+          <h3 v-else>{{ data_imgur.title}}</h3>
+          <button v-on:click="addFavory(data_imgur.images[0].id)" class="btn-secondary like-review">
+            <i  class="fa fa-heart" aria-hidden="true"></i> Like
+          </button>
+
         </div>
 
-        <!-- Contrôles -->
-        <a class="carousel-control-prev" href="#demo" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Précédent</span>
-        </a>
-        <a class="carousel-control-next" href="#demo" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Suivant</span>
-        </a>
       </div>
     </section>
-
   </div>
 </template>
 
@@ -98,6 +77,33 @@ export default {
           .then(response => response.text())
           .then(result => console.log(result))
           .catch(error => console.log('error', error));
+    },
+    fullscreen : function (z){
+      let divObj = document.getElementById(z);
+      //Use the specification method before using prefixed versions
+      if (divObj.requestFullscreen) {
+        divObj.requestFullscreen();
+
+      }
+
+      else if (divObj.msRequestFullscreen) {
+        divObj.msRequestFullscreen();
+      }
+      else if (divObj.mozRequestFullScreen) {
+        divObj.mozRequestFullScreen();
+      }
+      else if (divObj.webkitRequestFullscreen) {
+        divObj.webkitRequestFullscreen();
+      } else {
+        console.log("Fullscreen API is not supported");
+      }
+      /*document.onclick = function (){
+        console.log(divObj.requestFullscreen)
+        if (divObj.requestFullscreen){
+
+          document.exitFullscreen();
+        }
+      }*/
     }
   }
 }
@@ -105,24 +111,3 @@ export default {
 
 </script>
 
-<style scoped>
-.card {
-  margin: 1.2rem;
-  width: 200px;
-  border: solid 1px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.coeur {
-  width: 100%;
-  align-self: flex-end;
-}
-
-.coeur:hover, .coeur:active {
-  color: red;
-  cursor: pointer;
-}
-
-</style>

@@ -1,8 +1,8 @@
 <template>
   <div class="connect">
     <section v-if="token==undefined">
-      <h2>Connecte toi !</h2>
-      <a href="https://api.imgur.com/oauth2/authorize?client_id=d33f24daaee4a85&response_type=token">Se connecter</a>
+      <h3> Great choice 👌</h3>
+      <a class="loginButton" href="https://api.imgur.com/oauth2/authorize?client_id=d33f24daaee4a85&response_type=token">Se connecter</a>
     </section>
     <section v-else>
       <img :src="data_profil.avatar" alt="">
@@ -40,7 +40,6 @@ export default{
 
     if (localStorage.getItem('token') == null) {
       console.log('nop');
-      window.location.href = '/connection'
     } else {
       console.log('yess');
       this.token = localStorage.getItem('token')
@@ -64,13 +63,19 @@ export default{
 </script>
 
 
-<style scoped>
-
-
-h3 {
-  color: white;
+<style lang="scss" scoped>
+.loginButton{
+  margin: 10px;
+  padding: 1em;
+  display: inline-block;
   text-transform: uppercase;
-  letter-spacing: 2px;
-
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  border: solid 1px white;
+  transition: 0.5s;
+  &:hover{
+    background-color: #634bbb;
+  }
 }
 </style>

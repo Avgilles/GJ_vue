@@ -1,7 +1,9 @@
 <template>
   <div class="home">
-    <h1 class="bigTitle">be viral </h1>
-
+    <section v-if="token==undefined">
+      <h3> You must log you first 🙃</h3>
+    </section>
+    <h1 v-else class="bigTitle">be viral </h1>
 
     <section class="container">
       <div v-for="(data_imgur, index) in data_imgur" :key="index"  :id="index">
@@ -9,6 +11,9 @@
 
           <div class="content" v-for="(images, index) in data_imgur.images" :key="index" >
             <div class="content-image">
+
+
+
               <img :id="images.id"  class="fullscreen" v-on:click="fullscreen(images.id)" v-if="images.type=='image/jpeg'||'image/png'" width="320" v-bind:src="images.link">
               <video class="fullscreen" v-else-if="images.type=='video/mp4'" controls width="320">
                 <source :src="images.link"
@@ -47,7 +52,6 @@ export default {
   beforeMount() {
     if (localStorage.getItem('token') == null) {
       console.log('nop');
-      window.location.href = '/connection'
     } else {
       console.log('yess');
       this.token = localStorage.getItem('token')
@@ -97,13 +101,11 @@ export default {
       } else {
         console.log("Fullscreen API is not supported");
       }
-      /*document.onclick = function (){
-        console.log(divObj.requestFullscreen)
-        if (divObj.requestFullscreen){
-
-          document.exitFullscreen();
+      document.onclick = function () {
+        if (document.fullscreenElement) {
+          document.exitFullscreen()
         }
-      }*/
+      }
     }
   }
 }
@@ -111,3 +113,7 @@ export default {
 
 </script>
 
+<style lang="scss" scoped>
+
+
+</style>

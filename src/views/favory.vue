@@ -2,7 +2,10 @@
 
   <div id="fav">
 
-    <h1 class="bigTitle">You're fav </h1>
+    <section v-if="token==undefined">
+      <h3> You must log you first 🙃</h3>
+    </section>
+    <h1 v-else class="bigTitle">You're fav </h1>
 
 
     <section class="container">

@@ -1,4 +1,4 @@
-# cuisine-route
+# GJ_vue
 
 ## Project setup
 ```

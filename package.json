@@ -16,7 +16,7 @@
     "jquery": "^3.5.1",
     "local-storage": "^2.0.0",
     "popper.js": "^1.16.1",
-    "vue": "^3.0.0",
+    "vue": "^3.0.2",
     "vue-router": "^4.0.0-0"
   },
   "devDependencies": {

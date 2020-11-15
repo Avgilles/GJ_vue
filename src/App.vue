@@ -1,26 +1,11 @@
 <template>
   <div id="nav">
-<!--
-    <MenuBurger/>
--->
-
     <router-link to="/"><span class="home-nav"></span></router-link>
     <router-link to="/login"><span class="user-nav"></span></router-link>
     <router-link to="/favory"><span class="fav-nav"></span></router-link>
-
   </div>
   <router-view/>
 </template>
-
-<script>
-
-/*import MenuBurger from "@/components/menu";
-
-export default {
-  components: {MenuBurger}
-
-}*/
-</script>
 
 <style lang="scss">
 $font-style-title: 'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
@@ -154,6 +139,13 @@ h3{
     content: url("./assets/star-white.svg");
 
   }
+}
+
+h3 {
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
 }
 
 .fullscreen:-webkit-full-screen {

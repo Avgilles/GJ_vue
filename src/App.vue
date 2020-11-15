@@ -1,17 +1,25 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="nav">
+<!--
+    <MenuBurger/>
+-->
+
+    <router-link to="/">Home</router-link> |
+    <router-link to="/login">Connection</router-link> |
+    <router-link to="/favory">Favory</router-link>
+
+  </div>
+  <router-view/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+/*import MenuBurger from "@/components/menu";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  components: {MenuBurger}
+
+}*/
 </script>
 
 <style lang="scss">
@@ -21,6 +29,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
 }
 </style>

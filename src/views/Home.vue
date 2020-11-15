@@ -26,8 +26,8 @@
           </div>
           <h3 v-if="data_imgur.title.length > 25"> {{ data_imgur.title.substring(0,60) }}..</h3>
           <h3 v-else>{{ data_imgur.title}}</h3>
-          <button v-on:click="addFavory(data_imgur.images[0].id)" class="btn-secondary like-review">
-            <i  class="fa fa-heart" aria-hidden="true"></i> Like
+       <button v-on:click="addFavory(data_imgur.images[0].id)" class="btn-secondary like-review like">
+          <img src="../assets/heart.svg" alt="">   Like
           </button>
 
         </div>
@@ -114,6 +114,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.like {
+padding: .5rem 1.5rem;
+color: white;
+border: transparent;
+background-color: rgb(220,20,60);	
+margin-bottom: 1.75rem;
+transition: 0.5s;
+font-weight: bold;
+border-radius: 50px;
+    box-shadow: 0 10px 20px -8px rgb(240, 75, 113);
+    &:hover {
+background-color:rgb(178,34,34);
+cursor: pointer;
+transform: translateY(3px);
 
+}
+
+}
 
 </style>
